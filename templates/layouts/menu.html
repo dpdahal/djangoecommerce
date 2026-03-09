@@ -1,0 +1,14 @@
+<div class="stellarnav">
+		<ul>
+            {% for cat in category %}
+                {% if cat.child.count > 0 %} 
+                    <li><a href=""> {{cat.name}}</a>
+                        {% include 'layouts/child-nav.html' with child_category=cat.child.all %}
+                    </li>
+                {% else %}
+                    <li><a href=""> {{cat.name}}</a></li>
+                {% endif %}
+            {% endfor %}
+		    
+		</ul>
+	</div>

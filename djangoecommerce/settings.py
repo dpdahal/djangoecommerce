@@ -43,6 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ecommerce.apps.EcommerceConfig',
+    'ckeditor',
+    'mptt',
+    'django_cleanup.apps.CleanupConfig',
+    "crispy_forms",
+    "crispy_bootstrap4",
+
 ]
 
 MIDDLEWARE = [
@@ -67,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'ecommerce.general.global_data',
             ],
         },
     },
@@ -130,3 +137,16 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT= BASE_DIR / "media"
 MEDIA_URL = '/media/'
+
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': 900,
+    },
+}
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

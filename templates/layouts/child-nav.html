@@ -1,0 +1,12 @@
+<ul>
+            {% for child in child_category %}
+                {% if child.child.count > 0 %} 
+                    <li><a href=""> {{child.name}}</a>
+                        {% include 'layouts/child-nav.html' with child_category=child.child.all %}
+                    </li>
+                {% else %}
+                    <li><a href=""> {{child.name}}</a></li>
+                {% endif %}
+            {% endfor %}
+		    
+</ul>
