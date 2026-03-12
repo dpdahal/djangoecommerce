@@ -7,6 +7,15 @@
     <div class="container-fluid product py-5">
         <div class="container py-5">
             <div class="tab-class">
+                <div class="row">
+                    <div class="col-md-12">
+                    {% if messages %}
+                        {% for messsage in messages %}
+                            <div class="alert alert-success">{{ messsage }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                </div>
                 <div class="row g-4">
                     <div class="col-lg-4 text-start wow fadeInLeft" data-wow-delay="0.1s">
                         <h1>Our Products</h1>
@@ -55,9 +64,9 @@
                                         </div>
                                         <div class="text-center rounded-bottom p-4">
                                             <a href="#" class="d-block mb-2">
-                                                {{product.title}}
+                                                {{product.name}}
                                             </a>
-                                            <a href="#" class="d-block h4">{{product.title}}</a>
+                                            <a href="#" class="d-block h4">{{product.name}}</a>
                                             <del class="me-2 fs-5">
                                                 {{product.price}}
                                             </del>
@@ -66,7 +75,7 @@
                                     </div>
                                     <div
                                         class="product-item-add border border-top-0 rounded-bottom text-center p-4 pt-0">
-                                        <a href="#"
+                                        <a href="{% url 'add_to_cart' product.id %}"
                                             class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">

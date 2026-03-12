@@ -70,3 +70,39 @@ class Contact(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+
+class Buyer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=20, blank=True)
+    address = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+
+
+
+class UniqueCart(models.Model):
+    buyer_id = models.ForeignKey(Buyer, on_delete=models.SET_NULL, null=True, blank=True)
+    total = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return "Unique Cart: " + str(self.id)
+
+
+class CartProduct(models.Model):
+    cart = models.ForeignKey(UniqueCart, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    rate = models.PositiveIntegerField(default=0)
+    quantity = models.PositiveIntegerField(default=0)
+    sub_total = models.PositiveIntegerField(default=0)
+
+
+class Order(models.Model):
+    cart = models.OneToOneField(UniqueCart, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255)
+    address = models.CharField(max_length=200)
+    phone = models.CharField(max_length=200)
+    rate = models.PositiveIntegerField(default=0)
+    sub_total = models.PositiveIntegerField(default=0)

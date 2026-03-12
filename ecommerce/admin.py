@@ -56,5 +56,8 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 
+@admin.register(UniqueCart)
+class UniqueCartAdmin(admin.ModelAdmin):
+    list_display = ['buyer_id', 'total']
 
 
